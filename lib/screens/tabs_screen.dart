@@ -1,9 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:meal/data/dummy_data.dart';
 import 'package:meal/screens/categories_screen.dart';
 import 'package:meal/screens/filters_screen.dart';
 import 'package:meal/screens/meals_screen.dart';
 import 'package:meal/models/meal.dart';
 import 'package:meal/widgets/main_drawer.dart';
+
+const kInitialFilters = {
+  Filter.glutenFree: false,
+  Filter.lactoseFree: false,
+  Filter.vegetarian: false,
+  Filter.vegan: false,
+};
 
 class TabsScreen extends StatefulWidget {
   const TabsScreen({super.key});
@@ -16,6 +24,7 @@ class TabsScreen extends StatefulWidget {
 class _TabsScreenState extends State<TabsScreen> {
   int _selectedPageIndex = 0;
   final List<Meal> _favoriteMeals = [];
+  Map<Filter, bool> _selectedFilters = kInitialFilters;
 
   void showInfoMessage(String message) {
     ScaffoldMessenger.of(context).clearSnackBars();
@@ -57,12 +66,15 @@ class _TabsScreenState extends State<TabsScreen> {
           builder: (ctx) => const FiltersScreen(),
         ),
       );
-      print('->>>>>> $result');
+      setState(() {
+        _selectedFilters = result ?? kInitialFilters;
+      });
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    // final availableMeals = dummyMeals
     Widget activePage = CategoriesScreen(
       onToggleFavorite: _toggleMealFavoriteStatus,
     );

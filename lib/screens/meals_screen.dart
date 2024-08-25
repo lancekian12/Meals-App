@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:meal/data/dummy_data.dart';
 import 'package:meal/models/meal.dart';
 import 'package:meal/screens/meal_details_screen.dart';
 import 'package:meal/widgets/meal_item.dart';
 
 class MealsScreen extends StatelessWidget {
-  const MealsScreen(
-      {super.key,
-      this.title,
-      required this.meals,
-      required this.onToggleFavorite});
+  const MealsScreen({
+    super.key,
+    this.title,
+    required this.meals,
+    required this.onToggleFavorite,
+  });
 
   final String? title;
   final List<Meal> meals;
   final void Function(Meal meal) onToggleFavorite;
 
+  // Added a function going to MealDetailScreen()
   void selectMeal(BuildContext context, Meal meal) {
     Navigator.of(context).push(
       MaterialPageRoute(
@@ -50,7 +51,7 @@ class MealsScreen extends StatelessWidget {
     if (meals.isEmpty) {
       content = Center(
         child: Column(
-          mainAxisSize: MainAxisSize.max,
+          mainAxisSize: MainAxisSize.min,
           children: [
             const Text('Uh, no .. nothing there'),
             const SizedBox(height: 16),

@@ -3,8 +3,11 @@ import 'package:meal/main.dart';
 import 'package:meal/models/meal.dart';
 
 class MealDetailsScreen extends StatelessWidget {
-  const MealDetailsScreen(
-      {super.key, required this.meal, required this.onToggleFavorite});
+  const MealDetailsScreen({
+    super.key,
+    required this.meal,
+    required this.onToggleFavorite,
+  });
 
   final Meal meal;
   final void Function(Meal meal) onToggleFavorite;
