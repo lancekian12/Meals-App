@@ -106,6 +106,7 @@ class _TabsScreenState extends State<TabsScreen> {
       );
       activePageTitle = 'Your Favorites';
     }
+
     return Scaffold(
       appBar: AppBar(
         title: Text(activePageTitle),
