@@ -13,7 +13,6 @@ class MealsScreen extends StatelessWidget {
   final String? title;
   final List<Meal> meals;
 
-  // Added a function going to MealDetailScreen()
   void selectMeal(BuildContext context, Meal meal) {
     Navigator.of(context).push(
       MaterialPageRoute(
