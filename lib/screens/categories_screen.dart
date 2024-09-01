@@ -5,17 +5,44 @@ import 'package:meal/widgets/category_grid_item.dart';
 import 'package:meal/models/category.dart';
 import 'package:meal/models/meal.dart';
 
-class CategoriesScreen extends StatelessWidget {
+class CategoriesScreen extends StatefulWidget {
   const CategoriesScreen({
     super.key,
     required this.availableMeals,
   });
-
   final List<Meal> availableMeals;
+
+  @override
+  State<CategoriesScreen> createState() {
+    return _CategoriesScreenState();
+  }
+}
+
+class _CategoriesScreenState extends State<CategoriesScreen>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _animationController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 300),
+      lowerBound: 0,
+      upperBound: 1,
+    );
+  }
+
+  @override
+  void dispose() {
+    _animationController.dispose();
+    super.dispose();
+  }
 
   void _selectedCategory(BuildContext context, Category category) {
     //Navigator.push(context, route) is the same as Navigator.of(context).push(route);
-    final filteredMeals = availableMeals
+    final filteredMeals = widget.availableMeals
         .where((meal) => meal.categories.contains(category.id))
         .toList();
     Navigator.of(context).push(
